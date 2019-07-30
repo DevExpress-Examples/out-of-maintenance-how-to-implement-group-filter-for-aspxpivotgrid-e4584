@@ -5,7 +5,7 @@
 <!-- default file list end -->
 # How to Implement Group Filter for ASPxPivotGrid
 <!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/e4584)**
+**[[Run Online]](https://codecentral.devexpress.com/e4584/)**
 <!-- run online end -->
 
 
