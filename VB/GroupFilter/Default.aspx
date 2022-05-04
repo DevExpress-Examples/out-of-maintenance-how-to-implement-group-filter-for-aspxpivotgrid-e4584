@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="GroupFilter._Default" %>
 
-<%@ Register assembly="DevExpress.Web.ASPxPivotGrid.v13.1, Version=13.1.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPivotGrid" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.ASPxPivotGrid.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPivotGrid" tagprefix="dx" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -13,32 +13,46 @@
 	<div>
 
 	</div>
-	<dx:ASPxPivotGrid ID="ASPxPivotGrid1" runat="server" 
-		DataSourceID="AccessDataSource1" EnableTheming="True" Theme="Default">
-		<Fields>
-			<dx:PivotGridField ID="fieldProductName" AreaIndex="0" Caption="Product Name" 
-				FieldName="ProductName">
-			</dx:PivotGridField>
-			<dx:PivotGridField ID="fieldExtendedPrice" Area="DataArea" AreaIndex="0" 
-				Caption="Extended Price" FieldName="Extended_Price">
-			</dx:PivotGridField>
-			<dx:PivotGridField ID="fieldCategoryName" Area="RowArea" AreaIndex="0" 
-				Caption="Category Name" FieldName="CategoryName">
-			</dx:PivotGridField>
-			<dx:PivotGridField ID="fieldOrderDateYear" Area="ColumnArea" AreaIndex="0" 
-				Caption="Year" FieldName="OrderDate" GroupInterval="DateYear" 
-				UnboundFieldName="fieldOrderDate">
-			</dx:PivotGridField>
-			<dx:PivotGridField ID="fieldOrderDateMonth" Area="ColumnArea" AreaIndex="1" 
-				Caption="Month" FieldName="OrderDate" GroupInterval="DateMonth" 
-				UnboundFieldName="fieldOrderDate1">
-			</dx:PivotGridField>
-		</Fields>
-	</dx:ASPxPivotGrid>
-	<asp:AccessDataSource ID="AccessDataSource1" runat="server" 
-		DataFile="~/App_Data/nwind.mdb" 
-		SelectCommand="SELECT [ProductName], [Extended Price] AS Extended_Price, [CategoryName], [OrderDate] FROM [SalesPerson]">
-	</asp:AccessDataSource>
+    <dx:ASPxPivotGrid ID="ASPxPivotGrid1" runat="server" 
+        DataSourceID="SqlDataSource1" EnableTheming="True" Theme="Default" ClientIDMode="AutoID" IsMaterialDesign="False"
+        OptionsData-DataProcessingEngine="Optimized">
+        <Fields>
+            <dx:PivotGridField ID="fieldProductName1" AreaIndex="0" Caption="Product Name" Name="fieldProductName1">
+                <DataBindingSerializable>
+                    <dx:DataSourceColumnBinding ColumnName="ProductName" />
+                </DataBindingSerializable>
+            </dx:PivotGridField>
+            <dx:PivotGridField ID="fieldExtendedPrice" Area="DataArea" AreaIndex="0" 
+                Caption="Extended Price" Name="fieldExtendedPrice">
+                <DataBindingSerializable>
+                    <dx:DataSourceColumnBinding ColumnName="Extended Price" />
+                </DataBindingSerializable>
+            </dx:PivotGridField>
+            <dx:PivotGridField ID="fieldCategoryName1" Area="RowArea" AreaIndex="0" 
+                Caption="Category Name" Name="fieldCategoryName1">
+                <DataBindingSerializable>
+                    <dx:DataSourceColumnBinding ColumnName="CategoryName" />
+                </DataBindingSerializable>
+            </dx:PivotGridField>
+            <dx:PivotGridField ID="fieldOrderDateYear" Area="ColumnArea" AreaIndex="0" 
+                Caption="Year">
+                <DataBindingSerializable>
+                    <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateYear" />
+                </DataBindingSerializable>
+            </dx:PivotGridField>
+            <dx:PivotGridField ID="fieldOrderDateMonth" Area="ColumnArea" AreaIndex="1" 
+                Caption="Month">
+                <DataBindingSerializable>
+                    <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateMonth" />
+                </DataBindingSerializable>
+            </dx:PivotGridField>
+        </Fields>
+        <OptionsData DataProcessingEngine="Optimized" />
+    </dx:ASPxPivotGrid>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
+            SelectCommand="SELECT * FROM [SalesPerson]"></asp:SqlDataSource>
 	</form>
 </body>
 </html>
